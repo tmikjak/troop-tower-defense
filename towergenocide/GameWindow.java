@@ -27,7 +27,6 @@ public class GameWindow
     private JButton startButton;
     private JButton exitButton;
     private JLabel jLabel1;
-    private JLabel jLabel2;
     private JLabel background;
     private ActionListener exit;
     private ActionListener start;
@@ -43,10 +42,12 @@ public class GameWindow
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
         // Main screen buttons and labels
-        startButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        exitButton = new javax.swing.JButton();
+        startButton = new JButton();
+        jLabel1 = new JLabel();
+        exitButton = new JButton();
+        startButton.setPreferredSize(new Dimension(500, 200));
+        exitButton.setPreferredSize(new Dimension(500, 200));
+        
         
         // Action listeners
         exit = new ExitListener();
@@ -60,24 +61,40 @@ public class GameWindow
 
         background.setLayout(new FlowLayout(FlowLayout.CENTER));
         
-        background.add(startButton);
+        //background.add(startButton);
         
         jLabel1.setFont(new Font("STENCIl",40,90));
-        jLabel2.setFont(new Font("STENCIL", 40,90));
         
-        background.add(jLabel1);        
-        background.add(exitButton);
-        background.add(jLabel2);
-        
+        //background.add(jLabel1);        
+        //background.add(exitButton);
+        //background.add(jLabel2);
+        //background.add(startButton);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
+        buttonPanel.setLayout(new BorderLayout());
+        buttonPanel.add(jLabel1, BorderLayout.NORTH);
+        //buttonPanel.add(jLabel2, BorderLayout.NORTH);
+        buttonPanel.add(startButton, BorderLayout.CENTER);
+        buttonPanel.add(exitButton, BorderLayout.SOUTH);
+        background.add(buttonPanel);
 
         startButton.setText("Start Game");
+        startButton.setFont(new Font("Arial", Font.PLAIN, 40));
+        startButton.setContentAreaFilled(false);
+        startButton.setBorderPainted(false);
+        startButton.setFocusPainted(false);
         startButton.addActionListener(start);
 
         exitButton.setText("Exit Game");
+        exitButton.setFont(new Font("Arial", Font.PLAIN, 40));
+        exitButton.setContentAreaFilled(false);
+        exitButton.setBorderPainted(false);
+        exitButton.setFocusPainted(false);
         exitButton.addActionListener(exit);
 
-        jLabel1.setText("Tower VS Tower ");
-        jLabel2.setText("Battleground");  
+        jLabel1.setText("<html>Tower VS Tower<br> Battleground</html>");
+        //jLabel1.
+  
     }
     
     // Action listener for exit button
