@@ -27,12 +27,13 @@ public class GameWindow
     private static final int HEIGHT = 720;
     private JButton startButton;
     private JButton exitButton;
-    private JLabel jLabel1;
+    private JLabel jLabel1, jLabel2;
     private JLabel background;
     private ActionListener exit;
     private ActionListener start;
     private JLabel gameBackground;
-    
+    private JButton allies;
+    private JButton axis;
     
     
     public GameWindow() throws IOException
@@ -47,9 +48,19 @@ public class GameWindow
         // Main screen buttons and labels
         startButton = new JButton();
         jLabel1 = new JLabel();
+        jLabel2 = new JLabel();
         exitButton = new JButton();
         startButton.setPreferredSize(new Dimension(500, 200));
         exitButton.setPreferredSize(new Dimension(500, 200));
+        
+        //For the Second Game Menu
+        allies = new JButton();
+        allies.setPreferredSize(new Dimension(500, 200));
+        
+        //allies.setBackground(Color.red)
+        
+        axis = new JButton();
+        axis.setPreferredSize(new Dimension(500, 200));
         
         
         // Action listeners
@@ -68,10 +79,14 @@ public class GameWindow
         frame.add(background);
 
         background.setLayout(new FlowLayout(FlowLayout.CENTER));
+        gameBackground.setLayout(new FlowLayout(FlowLayout.CENTER));
         
         //background.add(startButton);
         
         jLabel1.setFont(new Font("STENCIl",40,90));
+        
+        jLabel1.setText("<html>Tower VS Tower<br> Battleground</html>");
+        //jLabel1.
         
         //background.add(jLabel1);        
         //background.add(exitButton);
@@ -99,10 +114,37 @@ public class GameWindow
         exitButton.setBorderPainted(false);
         exitButton.setFocusPainted(false);
         exitButton.addActionListener(exit);
+        
+        /*FACTION BUTTONS
+         *
+         * Will Need to set them to Start Game
+         * Spawn Tower Graphics
+         * Open Game Menu for Troops
+         *
+         */
+        
+        jLabel2.setFont(new Font("STENCIl",40,90));
+        jLabel2.setText("<html>Choose Your Faction<br></html>");
+        
+        allies.setText("ALLIES");
+        allies.setFont(new Font("Arial", Font.PLAIN, 40));
+        allies.setContentAreaFilled(false);
+        allies.setBorderPainted(false);
+        allies.setFocusPainted(false);
+        
+        axis.setText("AXIS");
+        axis.setFont(new Font("Arial", Font.PLAIN, 40));
+        axis.setContentAreaFilled(false);
+        axis.setBorderPainted(false);
+        axis.setFocusPainted(false);
+       
+        JPanel gamePanel = new JPanel();
+        gamePanel.setLayout(new BorderLayout());
+        gamePanel.add(jLabel2, BorderLayout.NORTH);
+        gamePanel.add(allies, BorderLayout.CENTER);
+        gamePanel.add(axis, BorderLayout.SOUTH);
+        gameBackground.add(gamePanel);
 
-        jLabel1.setText("<html>Tower VS Tower<br> Battleground</html>");
-        //jLabel1.
-  
     }
     
     // Action listener for exit button
@@ -154,5 +196,4 @@ public class GameWindow
             MGP.start(loop);
             
         };
-    
 }
